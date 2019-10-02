@@ -7,14 +7,14 @@ int getDigit()
 {
     static std::random_device dev;
     static std::mt19937 rng(dev());
-    static std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 10);
+    static std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 9);
     return dist6(rng);
 }
 
 bool fImpl(int n)
 {
-    const auto withinTheRegion = getDigit() < 4; // 3 out of 10
-    const auto shoot = withinTheRegion && getDigit() < 3; // 2 out of 10
+    const auto withinTheRegion = getDigit() < 3; // 3 out of 10
+    const auto shoot = withinTheRegion && getDigit() < 2; // 2 out of 10
     return shoot || (n > 1 && fImpl(n - 1));
 }
 
